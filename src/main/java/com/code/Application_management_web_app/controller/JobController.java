@@ -1,17 +1,19 @@
 package com.code.Application_management_web_app.controller;
 
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.code.Application_management_web_app.Entity.JobManagement;
+import com.code.Application_management_web_app.service.JobService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("job")
+@RequestMapping("/job")
 public class JobController {
 
+    @Autowired
+    private JobService jobService;
 
-    @GetMapping("java")
-    public String jobStatus(){
-        return  "hii Rojalin";
+    @PostMapping("/add")
+    public JobManagement addJob(@RequestBody JobManagement job) {
+        return jobService.saveJob(job);
     }
 }
